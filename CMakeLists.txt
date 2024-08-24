@@ -34,6 +34,13 @@ target_include_directories(${PROJECT_NAME}
     include
 )
 
+include(GNUInstallDirs)
+
 install(TARGETS ${PROJECT_NAME}
     ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
 )
+
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/curl"
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    FILES_MATCHING PATTERN "*.h")
