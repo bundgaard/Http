@@ -31,5 +31,5 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC
     include
 )
-
+message(STATUS "CMAKE_INSTALL_INCLUDEDIR: ${CMAKE_INSTALL_INCLUDEDIR}")
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
