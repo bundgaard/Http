@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.22)
 
-include(GNUInstallDirs)
+
 
 set(CMAKE_CXX_STANDARD 23)
 
 project(Http LANGUAGES CXX)
-
+include(GNUInstallDirs)
 
 add_library(Http STATIC
     src/Http.cpp
@@ -34,21 +34,9 @@ target_include_directories(${PROJECT_NAME}
     include
 )
 
-install(TARGETS ${PROJECT_NAME} 
-    EXPORT HttpTargets
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
 
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-install(EXPORT HttpTargets
-    FILE HttpTargets.cmake
-    NAMESPACE Http::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Http
-)
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
