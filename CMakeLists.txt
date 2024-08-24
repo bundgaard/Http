@@ -37,8 +37,10 @@ target_include_directories(${PROJECT_NAME}
 include(GNUInstallDirs)
 
 install(TARGETS ${PROJECT_NAME}
-    ARCHIVE DESTINATION lib
+    ARCHIVE DESTINATION archive
     LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
+    INCLUDES DESTINATION include
 )
 
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/curl"
