@@ -33,4 +33,4 @@ target_include_directories(${PROJECT_NAME}
 )
 
 file(GLOB HEADERS "${CMAKE_CURRENT_LIST_DIR}/include/Http/*.h")
-install(FILES ${HEADERS} DESTINATION "include/http")
+install(DIRECTORY include/ DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
