@@ -34,3 +34,6 @@ target_include_directories(${PROJECT_NAME}
     include
 )
 
+install(TARGETS ${PROJECT_NAME}
+    ARCHIVE DESTINATION lib
+)
