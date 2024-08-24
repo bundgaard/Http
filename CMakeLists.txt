@@ -9,12 +9,28 @@ add_library(Http STATIC
     src/Http.cpp
 )
 
-target_include_directories(${PROJECT_NAME}
+target_sources(${PROJECT_NAME}
+    PRIVATE
+    src/Http.cpp
     PUBLIC
-        include
+    include/Http/Http.h
+)
+
+
+target_compile_definitions(${PROJECT_NAME}
+    PUBLIC
+    -DUNICODE
 )
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE 
     httpapi.lib
 )
+
+target_include_directories(${PROJECT_NAME} 
+    PUBLIC
+    include
+)
+
+file(GLOB HEADERS "${CMAKE_CURRENT_LIST_DIR}/include/Http/*.h")
+install(FILES ${HEADERS} DESTINATION "include/http")
