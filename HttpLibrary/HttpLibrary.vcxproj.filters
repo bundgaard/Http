@@ -13,15 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Http.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{0899a8c5-11ee-4f18-a03e-6df51d88c9c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include\Http">
+      <UniqueIdentifier>{5021442d-0174-4019-a067-7fdad16ee5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src">
+      <UniqueIdentifier>{c9afa54d-d898-4d23-9102-0f3c79fecbcc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Http\Http.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\include\Http</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Http.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

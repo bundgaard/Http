@@ -112,6 +112,12 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>pwsh -NoLogo -NonInteractive -File $(MSBuildStartupDirectory)\Scripts\Package.ps1 -Header $(MSBuildProjectDirectory)\include -Lib $(OutDir)$(ProjectName).lib -Output $(OutDir)$(ProjectName)_$(ConfigurationName).zip</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Should package to a zip file with header and library</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -130,6 +136,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>pwsh -NoLogo -NonInteractive -File $(MSBuildStartupDirectory)\Scripts\Package.ps1 -Header $(MSBuildProjectDirectory)\include -Lib $(OutDir)$(ProjectName).lib -Output $(OutDir)$(ProjectName)_$(ConfigurationName).zip</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Should package to a zip file with header and library</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Http.cpp" />
