@@ -2,54 +2,44 @@ cmake_minimum_required(VERSION 3.22)
 
 
 
-set(CMAKE_CXX_STANDARD 23)
-
 project(Http LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(Http STATIC)
-
-target_sources(${PROJECT_NAME}
-    PRIVATE
-    src/Http.cpp
-    PUBLIC FILE_SET HEADERS
-    BASE_DIRS include/Http
+add_library(Http STATIC 
+    src/Http.cpp 
 )
-
-
-target_compile_definitions(${PROJECT_NAME}
-    PUBLIC
-    -DUNICODE
-)
-
 target_link_libraries(${PROJECT_NAME}
-    PRIVATE 
+    PUBLIC 
     httpapi.lib
 )
 
 target_include_directories(${PROJECT_NAME} 
     PUBLIC
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    INTERFACE
-    "$<INSTALL_INTERFACE:include>"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
 include(GNUInstallDirs)
 
-install(
-    TARGETS ${PROJECT_NAME} 
-    EXPORT "${PROJECT_NAME}Export" 
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-    FILE_SET HEADERS
-)
-install(
-    DIRECTORY include/${PROJECT_NAME}/
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
-    FILES_MATCHING PATTERN "*.h")
+message(STATUS "🌟 ${CMAKE_INSTALL_INCLUDEDIR}")
+message(STATUS "🌟 ${CMAKE_INSTALL_LIBDIR}")
+message(STATUS "🌟 ${CMAKE_CURRENT_SOURCE_DIR}")
 
-install(EXPORT "${PROJECT_NAME}Export"
-    FILE "${PROJECT_NAME}Config.cmake"
-    NAMESPACE ${PROJECT_NAME}::
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
-)
+# install(
+#     TARGETS ${PROJECT_NAME} 
+#     EXPORT "${PROJECT_NAME}Export" 
+#     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+#     FILE_SET HEADERS
+# )
+# install(
+#     DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}
+#     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
+#     FILES_MATCHING PATTERN "*.h")
+# 
+# install(EXPORT "${PROJECT_NAME}Export"
+#     FILE "${PROJECT_NAME}Config.cmake"
+#     NAMESPACE ${PROJECT_NAME}::
+#     DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
+# )
