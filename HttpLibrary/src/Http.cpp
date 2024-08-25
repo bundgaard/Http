@@ -354,7 +354,7 @@ namespace http_server
                 request_queue_handle,
                 request_id,
                 0, // Only fetch the headers, the body (if post) will be fetched later, using the same request ID.
-                reinterpret_cast<HTTP_REQUEST *>(http_request.data()), http_request.size(),
+                reinterpret_cast<HTTP_REQUEST*>(http_request.data()), static_cast<ULONG>(http_request.size()),
                 &bytes_received,
                 &overlapped);
             switch (rc)
@@ -437,7 +437,7 @@ namespace http_server
             std::vector<uint8_t> buffer(0x800, 0);
             ULONG bytes_received{};
             OVERLAPPED overlapped{};
-            ULONG rc = HttpReceiveRequestEntityBody(request_queue_handle, request.RequestId, 0, buffer.data(), buffer.size(), &bytes_received, &overlapped);
+            ULONG rc = HttpReceiveRequestEntityBody(request_queue_handle, request.RequestId, 0, buffer.data(), static_cast<ULONG>(buffer.size()), &bytes_received, &overlapped);
             switch (rc)
             {
             case NOERROR:
@@ -522,7 +522,7 @@ namespace http_server
             auto writer = response.writer.get();
             current_response.StatusCode = static_cast<USHORT>(writer->GetStatusCode());
             current_response.pReason = STATUS_OK.data();
-            current_response.ReasonLength = STATUS_OK.length();
+            current_response.ReasonLength = static_cast<USHORT>(STATUS_OK.length());
 
             current_response.Headers.KnownHeaders[HttpHeaderContentType].pRawValue = "text/plain";
             current_response.Headers.KnownHeaders[HttpHeaderContentType].RawValueLength = sizeof("text/plain") - 1;
@@ -531,7 +531,7 @@ namespace http_server
             HTTP_DATA_CHUNK chunk{};
             chunk.DataChunkType = HttpDataChunkFromMemory;
             chunk.FromMemory.pBuffer = const_cast<void *>(reinterpret_cast<const void *>(body.data()));
-            chunk.FromMemory.BufferLength = body.size();
+            chunk.FromMemory.BufferLength = static_cast<USHORT>(body.size());
 
             current_response.EntityChunkCount = 1;
             current_response.pEntityChunks = &chunk;
