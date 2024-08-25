@@ -22,7 +22,7 @@ function Add-ZipFile {
     $tempDir = New-Item -ItemType Directory -Path (Join-Path $env:TEMP ([System.Guid]::NewGuid().ToString()))
 
     Copy-Item -Path "$Source" -Destination $tempDir.FullName 
-    Copy-Item -Path "$Header" -Destination $tempDir.FullName 
+    Copy-Item -Path "$Header" -Destination $tempDir.FullName -Recurse
 
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     [System.IO.Compression.ZipFile]::
