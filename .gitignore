@@ -1,3 +1,7 @@
 */Release/**
 */Debug/**
 */x64/**
+*.vsidx
+*.db
+/.vs
+/HttpLibrary/HttpLibrary/x64
