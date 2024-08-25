@@ -49,6 +49,6 @@ jobs:
       
     - uses: actions/upload-artifact@v4
       with:
-        name: HttpLibrary_
-        path: x64/${{env.BUILD_CONFIGURATION}}/HttpLibrary_${{env.BUILD_CONFIGURATION}}.zip
+        name: HttpLibrary_${{matrix.configuration}}
+        path: x64/${{matrix.configuration}}/HttpLibrary_${{matrix.configuration}}.zip
         compression-level: 0
